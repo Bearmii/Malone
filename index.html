@@ -3,1100 +3,824 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MALONE — Rapper. Construction. Party Boy.</title>
+  <title>COME WITH ME — A DAY WITH MALONE</title>
+  <meta name="description" content="POV: a day in the life of Malone — rapper, construction worker, party boy. Melbourne built different." />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Caveat:wght@500;700&family=Inter:wght@400;500;600;700;800;900&family=Permanent+Marker&display=swap" rel="stylesheet" />
 
   <style>
-    /* ─── RESET & ROOT ─────────────────────────────────── */
+    /* ─── reset / root ─────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black:   #1C1C1C;
+      --void:    #050505;
+      --black:   #0D0D0D;
       --charcoal:#141414;
-      --void:    #0D0D0D;
       --gray:    #4A4A4A;
       --midgray: #888;
       --silver:  #C0C0C0;
       --white:   #F2F0EB;
+      --cream:   #E9E4D4;
       --yellow:  #FFDA00;
+      --neon:    #DCFF00;
       --orange:  #EB4521;
       --purple:  #A463C7;
-      --blue:    #1C3A68;
+      --bubble:  #1F1F1B;
+      --bubble2: #E9E4D4;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--black);
+      background: #000;
       color: var(--white);
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Inter', system-ui, sans-serif;
+      min-height: 100vh;
       overflow-x: hidden;
-      cursor: default;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ─── FILM GRAIN OVERLAY ───────────────────────────── */
+    /* film grain */
     body::after {
       content: '';
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 9999;
-      opacity: 0.028;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)'/%3E%3C/svg%3E");
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)'/%3E%3C/svg%3E");
       background-size: 300px 300px;
+      mix-blend-mode: overlay;
     }
 
-    /* ─── NAVIGATION ───────────────────────────────────── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 1000;
-      padding: 22px 48px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: linear-gradient(to bottom, rgba(20,20,20,0.92) 0%, transparent 100%);
-      transition: background 0.4s, padding 0.4s;
-    }
-
-    nav.scrolled {
-      background: rgba(13,13,13,0.97);
-      padding: 14px 48px;
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,218,0,0.08);
-    }
-
-    .nav-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 26px;
-      letter-spacing: 5px;
-      color: var(--yellow);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: opacity 0.2s;
-    }
-    .nav-logo:hover { opacity: 0.75; }
-
-    .nav-links {
-      display: flex;
-      gap: 36px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: rgba(242,240,235,0.7);
-      text-decoration: none;
+    /* ─── post container (mobile-frame) ─────────────────── */
+    .post {
+      max-width: 460px;
+      margin: 0 auto;
+      padding: 28px 18px 64px;
+      background: #000;
       position: relative;
-      transition: color 0.25s;
     }
 
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px; left: 0; right: 100%;
-      height: 1px;
-      background: var(--yellow);
-      transition: right 0.3s;
+    /* generic photo card */
+    .card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 14px;
+      background: #111;
+    }
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: contrast(1.05) saturate(1.02);
     }
 
-    .nav-links a:hover { color: var(--yellow); }
-    .nav-links a:hover::after { right: 0; }
-
-    /* ─── HERO ─────────────────────────────────────────── */
+    /* ─── HERO ROW ─────────────────────────────────────── */
     .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 1.2fr;
+      gap: 10px;
+      align-items: stretch;
+      margin-bottom: 12px;
+    }
+
+    .hero-photo {
       position: relative;
-      height: 100vh;
-      min-height: 680px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
+      aspect-ratio: 1 / 1.18;
+      border-radius: 12px;
       overflow: hidden;
     }
 
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background-image: url('BrandAssets/malone8.jpg');
-      background-size: cover;
-      background-position: center 30%;
-      filter: grayscale(35%) brightness(0.45) contrast(1.1);
-      transform: scale(1.06);
-      animation: heroZoom 18s ease-in-out infinite alternate;
-    }
-
-    @keyframes heroZoom {
-      from { transform: scale(1.06); }
-      to   { transform: scale(1.13); }
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(13,13,13,0.25) 0%,
-        rgba(13,13,13,0.05) 35%,
-        rgba(13,13,13,0.65) 72%,
-        rgba(20,20,20,1)    100%
-      );
-    }
-
-    /* diagonal yellow slash accent */
-    .hero-slash {
-      position: absolute;
-      bottom: 0; right: 0;
-      width: 60%;
+    .hero-photo img {
+      width: 100%;
       height: 100%;
-      background: linear-gradient(105deg, transparent 70%, rgba(255,218,0,0.03) 70%);
-      pointer-events: none;
+      object-fit: cover;
+      object-position: 50% 28%;
+      filter: contrast(1.06) saturate(1.05) brightness(0.95);
     }
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .hero-crown {
-      font-size: 44px;
-      color: var(--yellow);
-      display: block;
-      line-height: 1;
-      margin-bottom: -6px;
-      animation: crownFloat 3.2s ease-in-out infinite;
-      text-shadow: 0 0 30px rgba(255,218,0,0.6);
-      filter: drop-shadow(0 0 12px rgba(255,218,0,0.4));
-    }
-
-    @keyframes crownFloat {
-      0%, 100% { transform: translateY(0px); }
-      50%       { transform: translateY(-10px); }
-    }
-
-    .hero-name {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(96px, 19vw, 214px);
-      line-height: 0.88;
-      letter-spacing: clamp(6px, 1.5vw, 18px);
-      color: var(--white);
-      text-shadow:
-        5px 5px 0px var(--orange),
-        -1px -1px 0 rgba(255,218,0,0.15),
-        0 0 80px rgba(235,69,33,0.18);
-      animation: nameIn 1s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    @keyframes nameIn {
-      from { opacity: 0; transform: translateY(24px) skewX(-2deg); }
-      to   { opacity: 1; transform: translateY(0) skewX(0); }
-    }
-
-    .hero-tagline {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(12px, 2vw, 19px);
-      letter-spacing: clamp(6px, 2vw, 12px);
-      color: rgba(242,240,235,0.8);
-      margin-top: 14px;
-      animation: fadeUp 1s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    .hero-tagline .dot { color: var(--orange); margin: 0 6px; }
-
-    .hero-bar {
-      width: 56px;
-      height: 3px;
-      background: var(--yellow);
-      margin: 22px auto;
-      animation: fadeUp 1s 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-      box-shadow: 0 0 16px rgba(255,218,0,0.5);
-    }
-
-    .hero-built {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(15px, 2.2vw, 22px);
-      letter-spacing: clamp(8px, 2vw, 16px);
-      color: var(--yellow);
-      animation: fadeUp 1s 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    .hero-cta {
-      display: flex;
-      gap: 18px;
-      margin-top: 38px;
-      animation: fadeUp 1s 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .btn {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 15px;
-      letter-spacing: 4px;
-      padding: 14px 38px;
-      text-decoration: none;
-      display: inline-block;
-      transition: transform 0.25s, box-shadow 0.25s, background 0.25s, color 0.25s, border-color 0.25s;
-      cursor: pointer;
-      border: 2px solid transparent;
-    }
-
-    .btn-primary {
-      background: var(--yellow);
-      color: var(--black);
-    }
-    .btn-primary:hover {
-      background: var(--orange);
-      color: var(--white);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(235,69,33,0.4);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--white);
-      border-color: rgba(242,240,235,0.5);
-    }
-    .btn-outline:hover {
-      border-color: var(--yellow);
-      color: var(--yellow);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(255,218,0,0.12);
-    }
-
-    .hero-scroll-indicator {
+    .come-with-me {
       position: absolute;
-      bottom: 32px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
+      top: 10px;
+      left: 10px;
+      font-family: 'Caveat', cursive;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--white);
+      letter-spacing: 1px;
+      line-height: 1;
       display: flex;
       flex-direction: column;
+      gap: 2px;
+      z-index: 3;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.55);
+    }
+    .come-with-me .arrow {
+      width: 38px;
+      height: 30px;
+      margin-left: 22px;
+      stroke: var(--white);
+      filter: drop-shadow(0 1px 1px rgba(0,0,0,0.4));
+    }
+
+    .hero-text {
+      padding-top: 6px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      color: var(--white);
+    }
+
+    .hero-prefix {
+      font-family: 'Anton', sans-serif;
+      font-size: 36px;
+      letter-spacing: 1px;
+      line-height: 0.9;
+      color: var(--white);
+      text-transform: uppercase;
+    }
+
+    .hero-headline {
+      font-family: 'Anton', sans-serif;
+      font-size: 56px;
+      line-height: 0.86;
+      letter-spacing: 0.5px;
+      color: var(--yellow);
+      text-transform: uppercase;
+      position: relative;
+      display: inline-block;
+      padding: 6px 6px 8px;
+      margin-left: -4px;
+    }
+    /* hand-painted brush behind A DAY */
+    .hero-headline::before {
+      content: '';
+      position: absolute;
+      inset: -2px -8px -2px -10px;
+      background: var(--neon);
+      z-index: -1;
+      clip-path: polygon(
+        2% 18%, 8% 4%, 22% 12%, 38% 2%, 55% 10%, 72% 0%, 88% 14%, 100% 6%,
+        98% 30%, 100% 52%, 95% 72%, 100% 92%, 86% 100%, 70% 90%,
+        52% 98%, 36% 88%, 18% 96%, 4% 92%, 0% 76%, 6% 54%, 0% 34%
+      );
+      filter: drop-shadow(0 0 0 transparent);
+    }
+
+    .hero-suffix {
+      font-family: 'Anton', sans-serif;
+      font-size: 24px;
+      letter-spacing: 1px;
+      line-height: 0.9;
+      color: var(--white);
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .badge-row {
+      display: inline-flex;
       align-items: center;
       gap: 6px;
-    }
-
-    .hero-scroll-line {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, transparent, var(--yellow));
-      animation: scrollLine 1.8s ease-in-out infinite;
-    }
-
-    @keyframes scrollLine {
-      0%   { transform: scaleY(0); transform-origin: top; opacity: 0; }
-      40%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
-      100% { transform: scaleY(1); transform-origin: bottom; opacity: 0; }
-    }
-
-    .hero-scroll-text {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 8px;
-      font-weight: 700;
-      letter-spacing: 4px;
-      color: rgba(255,218,0,0.6);
-      text-transform: uppercase;
-    }
-
-    /* ─── MARQUEE / VALUES STRIP ───────────────────────── */
-    .marquee-strip {
-      background: var(--yellow);
-      padding: 16px 0;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .marquee-track {
-      display: flex;
-      gap: 0;
-      animation: marqueeScroll 28s linear infinite;
-      width: max-content;
-    }
-
-    @keyframes marqueeScroll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    .marquee-item {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 17px;
-      letter-spacing: 5px;
+      background: var(--cream);
       color: var(--black);
-      padding: 0 32px;
-      white-space: nowrap;
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      flex-shrink: 0;
+      font-family: 'Anton', sans-serif;
+      font-size: 16px;
+      letter-spacing: 1.5px;
+      padding: 5px 12px 6px;
+      border-radius: 6px;
+      margin-top: 8px;
+      transform: rotate(-1.2deg);
+      box-shadow: 3px 3px 0 #000;
+    }
+    .badge-row .crown { color: var(--orange); font-size: 14px; }
+    .badge-row .map   { color: var(--orange); font-size: 13px; font-family: 'Inter', sans-serif; font-weight: 800; }
+
+    /* ─── ESTABLISHING ROW (POV + LET'S GO) ─────────────── */
+    .establish {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 10px;
+      margin-bottom: 12px;
     }
 
-    .marquee-item::after {
-      content: '✦';
-      color: var(--orange);
-      font-size: 13px;
-    }
-
-    /* ─── SECTION CHROME ───────────────────────────────── */
-    .sec-label {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 10px;
+    .pov-bubble {
+      position: relative;
+      background: var(--bubble2);
+      color: #1a1a1a;
+      font-family: 'Caveat', cursive;
       font-weight: 700;
-      letter-spacing: 5px;
-      color: var(--orange);
-      text-transform: uppercase;
-      margin-bottom: 14px;
-      display: block;
+      font-size: 17px;
+      line-height: 1.2;
+      padding: 14px 14px 16px;
+      border-radius: 16px;
+      align-self: center;
+      box-shadow: 0 2px 0 rgba(0,0,0,0.4);
+    }
+    .pov-bubble::before {
+      content: '';
+      position: absolute;
+      left: 16px;
+      bottom: -10px;
+      width: 18px;
+      height: 18px;
+      background: var(--bubble2);
+      border-radius: 2px;
+      transform: rotate(38deg);
+    }
+    .pov-arrow {
+      position: absolute;
+      left: -16px;
+      top: -8px;
+      width: 30px;
+      height: 22px;
+      stroke: var(--white);
+      stroke-width: 1.6;
+      fill: none;
     }
 
-    .sec-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(42px, 7vw, 82px);
-      letter-spacing: 3px;
-      line-height: 0.95;
+    .lets-go-card {
+      position: relative;
+      aspect-ratio: 4 / 3.1;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .lets-go-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 40%;
+      filter: contrast(1.06) brightness(0.9);
+    }
+    .lets-go {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      background: #161613;
       color: var(--white);
+      font-family: 'Anton', sans-serif;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      padding: 5px 10px 6px;
+      border-radius: 6px;
+      box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
     }
 
-    .sec-title span { color: var(--yellow); }
-
-    /* ─── ABOUT ────────────────────────────────────────── */
-    #about {
-      padding: 110px 48px 100px;
-      max-width: 1240px;
-      margin: 0 auto;
+    /* ─── TRACKLIST BOARD + CLOSEUP ─────────────────────── */
+    .board-row {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
     }
 
-    .about-grid {
+    .board {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #0A0A0A;
+      border: 2px solid #1a1a1a;
+      aspect-ratio: 1 / 1.06;
+    }
+    .board-screen {
+      position: absolute;
+      inset: 14px;
+      background:
+        radial-gradient(ellipse at top, rgba(80,80,90,0.25), transparent 60%),
+        linear-gradient(180deg, #161A22 0%, #0E1116 100%);
+      border-radius: 8px;
+      padding: 12px 12px 10px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 90px;
-      align-items: center;
-      margin-top: 64px;
+      gap: 8px 14px;
+      align-content: start;
+      font-family: 'Inter', sans-serif;
     }
-
-    .about-img-wrap {
-      position: relative;
-    }
-
-    .about-img-wrap img {
-      width: 100%;
-      height: 520px;
-      object-fit: cover;
-      object-position: center 20%;
-      display: block;
-      filter: contrast(1.08) saturate(0.85);
-    }
-
-    .about-img-border {
-      position: absolute;
-      bottom: -18px;
-      right: -18px;
-      width: 100%;
-      height: 100%;
-      border: 2px solid var(--yellow);
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    .about-img-badge {
-      position: absolute;
-      top: -14px;
-      left: -14px;
-      background: var(--orange);
-      color: var(--white);
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 12px;
-      letter-spacing: 4px;
-      padding: 7px 18px;
-      z-index: 2;
-    }
-
-    /* orange scratch texture on photo */
-    .about-img-wrap::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(235,69,33,0.06) 0%, transparent 60%);
-      mix-blend-mode: screen;
-      pointer-events: none;
-    }
-
-    .about-bio {
-      font-size: 15px;
-      line-height: 2;
-      color: var(--silver);
-      font-weight: 300;
-      margin-top: 26px;
-    }
-
-    .about-bio + .about-bio { margin-top: 14px; }
-
-    .about-pillars {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-top: 44px;
-    }
-
-    .pillar {
-      border-top: 2px solid var(--yellow);
-      padding: 18px 14px;
-      background: rgba(255,218,0,0.03);
-      transition: background 0.3s;
-    }
-
-    .pillar:hover { background: rgba(255,218,0,0.06); }
-
-    .pillar-icon {
-      font-size: 24px;
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    .pillar-name {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 18px;
-      letter-spacing: 3px;
+    .board-col h4 {
+      font-family: 'Anton', sans-serif;
+      font-size: 13px;
+      letter-spacing: 1.5px;
       color: var(--yellow);
-      display: block;
-      margin-bottom: 7px;
-    }
-
-    .pillar-desc {
-      font-size: 11px;
-      line-height: 1.7;
-      color: var(--midgray);
-      font-weight: 400;
-    }
-
-    /* ─── MUSIC / ALBUM ────────────────────────────────── */
-    #music {
-      background: var(--charcoal);
-      padding: 110px 48px 100px;
-    }
-
-    .music-inner {
-      max-width: 1240px;
-      margin: 0 auto;
-    }
-
-    .music-grid {
-      display: grid;
-      grid-template-columns: 400px 1fr;
-      gap: 72px;
-      align-items: start;
-      margin-top: 64px;
-    }
-
-    /* Album cover */
-    .album-cover {
-      position: relative;
-      aspect-ratio: 1 / 1;
-      overflow: hidden;
-    }
-
-    .album-cover img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-      filter: contrast(1.12) saturate(0.8);
-      transition: transform 0.6s ease, filter 0.6s ease;
-    }
-
-    .album-cover:hover img {
-      transform: scale(1.04);
-      filter: contrast(1.08) saturate(1);
-    }
-
-    .album-cover-tint {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        145deg,
-        rgba(235,69,33,0.25) 0%,
-        rgba(28,28,28,0.15) 50%,
-        rgba(164,99,199,0.12) 100%
-      );
-      mix-blend-mode: multiply;
-    }
-
-    .album-cover-bottom {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 28px 24px 20px;
-      background: linear-gradient(to top, rgba(13,13,13,0.97) 0%, transparent 100%);
-    }
-
-    .album-title-text {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 38px;
-      letter-spacing: 8px;
-      color: var(--yellow);
-      line-height: 1;
-      text-shadow: 0 0 20px rgba(255,218,0,0.3);
-    }
-
-    .album-artist-text {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 5px;
-      color: rgba(242,240,235,0.55);
-      margin-top: 4px;
+      margin-bottom: 6px;
+      border-bottom: 1px solid rgba(255,218,0,0.25);
+      padding-bottom: 3px;
       text-transform: uppercase;
     }
-
-    /* vinyl spin accent on cover corner */
-    .album-cover-corner {
-      position: absolute;
-      top: 0; right: 0;
-      width: 0; height: 0;
-      border-style: solid;
-      border-width: 0 52px 52px 0;
-      border-color: transparent var(--orange) transparent transparent;
-    }
-
-    /* Tracklist */
-    .tracklist-head {
+    .board-line {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
-      padding-bottom: 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      margin-bottom: 4px;
-    }
-
-    .tracklist-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 30px;
-      letter-spacing: 5px;
-      color: var(--white);
-    }
-
-    .tracklist-count {
-      font-size: 10px;
+      font-size: 8.5px;
       font-weight: 700;
-      letter-spacing: 4px;
-      color: var(--gray);
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.78);
+      padding: 1.5px 0;
       text-transform: uppercase;
     }
+    .board-line span:last-child { color: var(--neon); }
 
-    .track {
-      display: grid;
-      grid-template-columns: 52px 1fr auto;
-      align-items: center;
-      padding: 17px 16px 17px 8px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      position: relative;
-      cursor: pointer;
-      transition: padding-left 0.3s;
-      overflow: hidden;
-    }
-
-    .track::before {
-      content: '';
+    .board-caption {
       position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, rgba(255,218,0,0.08) 0%, transparent 80%);
-      transform: translateX(-100%);
-      transition: transform 0.35s ease;
-    }
-
-    .track:hover { padding-left: 20px; }
-    .track:hover::before { transform: translateX(0); }
-
-    .track-num-col {
-      position: relative;
-      width: 36px;
-    }
-
-    .t-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 21px;
-      letter-spacing: 1px;
-      color: var(--gray);
-      line-height: 1;
-      transition: opacity 0.2s;
-    }
-
-    .t-play {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      font-size: 14px;
-      color: var(--yellow);
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-
-    .track:hover .t-num  { opacity: 0; }
-    .track:hover .t-play { opacity: 1; }
-
-    .t-name {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 21px;
-      letter-spacing: 2px;
+      left: 10px;
+      bottom: 10px;
+      background: #161613;
       color: var(--white);
-      transition: color 0.25s;
+      font-family: 'Anton', sans-serif;
+      font-size: 12px;
+      letter-spacing: 1.2px;
+      padding: 5px 9px 6px;
+      border-radius: 6px;
+      max-width: 88%;
+      box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+    }
+    .board-caption .em { color: var(--neon); }
+
+    /* close-up of malone "reading" */
+    .closeup {
       position: relative;
-    }
-
-    .track:hover .t-name { color: var(--yellow); }
-
-    .t-dur {
-      font-size: 11px;
-      font-weight: 300;
-      color: var(--midgray);
-      letter-spacing: 1px;
-      font-variant-numeric: tabular-nums;
-    }
-
-    /* ─── GALLERY ──────────────────────────────────────── */
-    #gallery {
-      padding: 110px 48px 100px;
-      max-width: 1240px;
-      margin: 0 auto;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: 260px 260px;
-      gap: 10px;
-      margin-top: 64px;
-    }
-
-    .g-item {
-      position: relative;
+      aspect-ratio: 1 / 1.06;
+      border-radius: 14px;
       overflow: hidden;
-      cursor: pointer;
     }
-
-    /* first item: tall left column */
-    .g-item:nth-child(1) {
-      grid-column: 1 / 3;
-      grid-row: 1 / 3;
-    }
-
-    .g-item img {
+    .closeup img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center;
-      display: block;
-      filter: grayscale(22%) brightness(0.95);
-      transition: transform 0.55s ease, filter 0.55s ease;
+      object-position: 50% 30%;
+      filter: contrast(1.08) saturate(1.05) brightness(0.96);
     }
-
-    .g-item:hover img {
-      transform: scale(1.07);
-      filter: grayscale(0%) brightness(1.05);
-    }
-
-    .g-item-overlay {
+    .closeup-bubble {
       position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(20,20,20,0.75) 0%, transparent 55%);
-      opacity: 0;
-      transition: opacity 0.35s;
+      right: 8px;
+      bottom: 10px;
+      background: #2A2E22;
+      color: var(--cream);
+      font-family: 'Caveat', cursive;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 1.18;
+      padding: 8px 10px 10px;
+      border-radius: 10px;
+      max-width: 78%;
+      box-shadow: 0 2px 0 rgba(0,0,0,0.45);
     }
-
-    .g-item:hover .g-item-overlay { opacity: 1; }
-
-    /* orange top-left corner accent on hover */
-    .g-item::before {
+    .closeup-bubble::before {
       content: '';
       position: absolute;
-      top: 0; left: 0;
-      width: 0; height: 3px;
-      background: var(--orange);
-      transition: width 0.4s;
-      z-index: 2;
+      left: -7px;
+      top: 14px;
+      width: 14px;
+      height: 14px;
+      background: #2A2E22;
+      transform: rotate(45deg);
+      border-radius: 2px;
     }
-    .g-item:hover::before { width: 100%; }
 
-    /* ─── FOOTER ───────────────────────────────────────── */
-    footer {
-      background: var(--void);
-      padding: 72px 48px 44px;
+    /* ─── VIBE PANEL ────────────────────────────────────── */
+    .vibe-row {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .vibe {
+      position: relative;
+      aspect-ratio: 1 / 1.1;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .vibe img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 35%;
+      filter: contrast(1.05) brightness(0.85);
+    }
+    .vibe-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 35%, rgba(0,0,0,0.05) 60%, rgba(0,0,0,0.7) 100%);
+    }
+    .vibe-cols {
+      position: absolute;
+      inset: 12px 12px auto 12px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      color: var(--white);
       text-align: center;
-      border-top: 1px solid rgba(255,218,0,0.07);
     }
-
-    .footer-crown {
-      font-size: 36px;
-      color: var(--yellow);
-      display: block;
-      margin-bottom: -4px;
-      filter: drop-shadow(0 0 14px rgba(255,218,0,0.4));
-    }
-
-    .footer-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 72px;
-      letter-spacing: 12px;
-      color: var(--yellow);
+    .vibe-cols h3 {
+      font-family: 'Anton', sans-serif;
+      font-size: 16px;
+      letter-spacing: 1px;
+      color: var(--white);
       line-height: 1;
-      text-shadow: 0 0 40px rgba(255,218,0,0.2);
+      margin-bottom: 5px;
+      text-transform: uppercase;
+    }
+    .vibe-cols .col + .col h3 { color: var(--white); }
+    .vibe-cols .col:nth-child(2) h3 { color: var(--yellow); }
+    .vibe-cols p {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.5;
+      text-transform: lowercase;
     }
 
-    .footer-tagline {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 13px;
-      letter-spacing: 7px;
-      color: var(--gray);
-      margin-top: 8px;
-      margin-bottom: 38px;
+    .whisper {
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+      right: 10px;
+      background: #0F0F0F;
+      border: 1px solid rgba(255,255,255,0.06);
+      color: var(--white);
+      font-family: 'Anton', sans-serif;
+      font-size: 12px;
+      line-height: 1.15;
+      letter-spacing: 1.1px;
+      padding: 7px 10px 8px;
+      border-radius: 8px;
+      text-transform: uppercase;
+    }
+    .whisper .em { font-style: italic; color: var(--midgray); font-family: 'Caveat', cursive; font-size: 13px; letter-spacing: 0.5px; margin-right: 4px; text-transform: lowercase; }
+    .whisper .emoji { font-family: 'Inter', sans-serif; }
+
+    .bag-card {
+      position: relative;
+      aspect-ratio: 1 / 1.1;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .bag-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 35%;
+      filter: contrast(1.05) brightness(0.95);
+    }
+    .bag-caption {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #161613;
+      color: var(--white);
+      font-family: 'Anton', sans-serif;
+      font-size: 12px;
+      letter-spacing: 1px;
+      padding: 6px 9px 7px;
+      border-radius: 6px;
+      max-width: 70%;
+      line-height: 1.1;
+      box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
     }
 
-    .footer-divider {
-      width: 40px;
-      height: 2px;
-      background: var(--orange);
-      margin: 0 auto 36px;
+    /* ─── CHECKLIST + ID CARD ──────────────────────────── */
+    .checklist-block {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
     }
 
-    .footer-socials {
-      display: flex;
-      justify-content: center;
-      gap: 38px;
+    .checklist {
       list-style: none;
-      margin-bottom: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 2px 2px;
+    }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      color: rgba(255,255,255,0.92);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+    .checklist li::before {
+      content: '';
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      border-radius: 50%;
+      border: 1.4px solid rgba(255,255,255,0.45);
+      background:
+        radial-gradient(circle at 50% 50%, var(--neon) 0 3.5px, transparent 4px);
     }
 
-    .footer-socials a {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 10px;
+    .id-card {
+      position: relative;
+      align-self: end;
+      justify-self: end;
+      width: 78%;
+      background: linear-gradient(135deg, #1a2b1a 0%, #2c3f24 55%, #1a2b1a 100%);
+      border-radius: 10px;
+      padding: 12px 14px 14px;
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      transform: rotate(-2deg);
+      box-shadow: 4px 6px 0 rgba(0,0,0,0.55);
+      overflow: hidden;
+    }
+    .id-card::after {
+      content: '';
+      position: absolute;
+      right: -22px;
+      top: -22px;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,218,0,0.2) 0%, transparent 65%);
+    }
+    .id-card .label {
+      font-family: 'Anton', sans-serif;
+      font-size: 13px;
+      letter-spacing: 1.8px;
+      color: var(--cream);
+      line-height: 1;
+    }
+    .id-card .label .accent { color: var(--yellow); }
+    .id-card .sub {
+      margin-top: 5px;
+      font-size: 9.5px;
+      letter-spacing: 1.5px;
+      color: rgba(233,228,212,0.7);
+      text-transform: uppercase;
       font-weight: 700;
-      letter-spacing: 3.5px;
-      text-transform: uppercase;
-      color: rgba(242,240,235,0.4);
-      text-decoration: none;
-      transition: color 0.25s;
     }
-
-    .footer-socials a:hover { color: var(--yellow); }
-
-    .footer-copy {
-      font-size: 10px;
-      letter-spacing: 3px;
-      color: rgba(255,255,255,0.15);
+    .id-card .stamp {
+      margin-top: 10px;
+      display: inline-block;
+      font-family: 'Permanent Marker', cursive;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      color: var(--neon);
+      border: 1.5px dashed rgba(220,255,0,0.7);
+      padding: 3px 7px;
+      transform: rotate(-2deg);
       text-transform: uppercase;
     }
-
-    /* ─── RESPONSIVE ───────────────────────────────────── */
-    @media (max-width: 900px) {
-      nav { padding: 18px 24px; }
-      nav.scrolled { padding: 12px 24px; }
-      .nav-links { gap: 22px; }
-
-      #about, #gallery { padding: 80px 24px 72px; }
-      #music { padding: 80px 24px 72px; }
-      footer { padding: 56px 24px 36px; }
-
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 60px;
-      }
-
-      .about-img-wrap img { height: 380px; }
-
-      .music-grid {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-
-      .album-cover { max-width: 360px; }
-
-      .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(3, 220px);
-      }
-
-      .g-item:nth-child(1) {
-        grid-column: 1 / 3;
-        grid-row: 1 / 2;
-      }
+    .id-arrow {
+      position: absolute;
+      left: -28px;
+      top: 4px;
+      width: 32px;
+      height: 28px;
+      stroke: var(--white);
+      stroke-width: 1.5;
+      fill: none;
     }
 
-    @media (max-width: 600px) {
-      .nav-links { display: none; }
-      .hero-cta { flex-direction: column; align-items: center; }
-      .btn { width: 220px; text-align: center; }
-      .about-pillars { grid-template-columns: 1fr; }
-      .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
-      .g-item:nth-child(1) { grid-column: 1; grid-row: 1; height: 280px; }
-      .g-item { height: 220px; }
-      .footer-logo { font-size: 50px; letter-spacing: 8px; }
-      .footer-socials { gap: 20px; flex-wrap: wrap; }
+    .checklist-bottom {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 10px;
+      align-items: end;
+    }
+
+    /* ─── HASHTAG FOOTER ────────────────────────────────── */
+    .hashtags {
+      margin-top: 14px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .hashtags p {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      color: #4a7dff;
+      line-height: 1.65;
+    }
+    .hashtags p span { color: #4a7dff; margin-right: 2px; }
+
+    .heart {
+      position: absolute;
+      right: 22px;
+      bottom: 22px;
+      width: 26px;
+      height: 26px;
+      border: 1.6px solid rgba(255,255,255,0.45);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.85);
+      font-size: 14px;
+      transition: transform 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      cursor: pointer;
+    }
+    .heart:hover {
+      color: var(--orange);
+      border-color: var(--orange);
+      transform: scale(1.08) rotate(-6deg);
+    }
+
+    /* ─── RESPONSIVE TUNING ─────────────────────────────── */
+    @media (max-width: 380px) {
+      .hero-prefix    { font-size: 30px; }
+      .hero-headline  { font-size: 46px; }
+      .hero-suffix    { font-size: 20px; }
+      .pov-bubble     { font-size: 15px; padding: 11px 11px 13px; }
+      .closeup-bubble { font-size: 12px; }
+      .vibe-cols h3   { font-size: 14px; }
+      .vibe-cols p    { font-size: 9px; }
+      .whisper        { font-size: 11px; }
+      .checklist li   { font-size: 12px; }
+    }
+
+    @media (min-width: 720px) {
+      .post {
+        max-width: 920px;
+        padding: 48px 32px 84px;
+      }
+      .hero-prefix    { font-size: 56px; }
+      .hero-headline  { font-size: 88px; }
+      .hero-suffix    { font-size: 36px; }
+      .badge-row      { font-size: 22px; padding: 7px 16px 9px; }
+      .pov-bubble     { font-size: 22px; padding: 18px 18px 22px; }
+      .lets-go        { font-size: 17px; }
+      .board-col h4   { font-size: 18px; }
+      .board-line     { font-size: 12px; }
+      .board-caption  { font-size: 16px; }
+      .closeup-bubble { font-size: 19px; }
+      .vibe-cols h3   { font-size: 22px; }
+      .vibe-cols p    { font-size: 13px; }
+      .whisper        { font-size: 16px; }
+      .bag-caption    { font-size: 16px; }
+      .checklist li   { font-size: 17px; }
+      .id-card .label { font-size: 18px; }
+      .id-card .sub   { font-size: 12px; }
+      .id-card .stamp { font-size: 14px; }
+      .hashtags p     { font-size: 16px; }
+      .heart          { width: 34px; height: 34px; font-size: 18px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ──────────────── NAV ──────────────── -->
-  <nav id="nav">
-    <a href="#" class="nav-logo">♛ MALONE</a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#music">Music</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+  <main class="post">
 
-  <!-- ──────────────── HERO ──────────────── -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-slash"></div>
+    <!-- ───────── HERO ROW ───────── -->
+    <section class="hero">
+      <div class="hero-photo">
+        <div class="come-with-me">
+          <span>come with me</span>
+          <svg class="arrow" viewBox="0 0 40 32" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 4 C 10 14, 18 22, 30 26" />
+            <path d="M22 20 L 30 26 L 24 30" />
+          </svg>
+        </div>
+        <img src="BrandAssets/malone3.jpg" alt="Malone grinning straight to camera" />
+      </div>
 
-    <div class="hero-content">
-      <span class="hero-crown">♛</span>
-      <h1 class="hero-name">MALONE</h1>
-      <p class="hero-tagline">
-        RAPPER
-        <span class="dot">·</span>
-        CONSTRUCTION
-        <span class="dot">·</span>
-        PARTY BOY
+      <div class="hero-text">
+        <p class="hero-prefix">TO LIVE</p>
+        <h1 class="hero-headline">A&nbsp;DAY</h1>
+        <p class="hero-suffix">LIKE</p>
+        <div class="badge-row">
+          <span class="crown">&#9819;</span>
+          <span>MALONE</span>
+          <span class="map">&middot;  MELB</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────── ESTABLISH (POV + LET'S GO) ───────── -->
+    <section class="establish">
+      <div class="pov-bubble">
+        <svg class="pov-arrow" viewBox="0 0 32 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 2 C 10 6, 14 10, 22 18" />
+          <path d="M14 18 L 22 18 L 20 10" />
+        </svg>
+        POV: you swung hammers all week and now every studio in Melbourne feels like a worksite &#127959;&#65039;
+      </div>
+
+      <div class="lets-go-card card">
+        <img src="BrandAssets/malone6.jpg" alt="Worksite vibes" />
+        <div class="lets-go">LET'S GO.</div>
+      </div>
+    </section>
+
+    <!-- ───────── BOARD + CLOSEUP ───────── -->
+    <section class="board-row">
+      <div class="board">
+        <div class="board-screen">
+          <div class="board-col">
+            <h4>TRACKS</h4>
+            <div class="board-line"><span>Jungle Fever</span><span>3:24</span></div>
+            <div class="board-line"><span>That Bitch</span><span>2:58</span></div>
+            <div class="board-line"><span>Gorilla Slam</span><span>3:11</span></div>
+            <div class="board-line"><span>Bare Bones</span><span>4:02</span></div>
+            <div class="board-line"><span>How Much</span><span>3:45</span></div>
+            <div class="board-line"><span>5AM Melb</span><span>4:33</span></div>
+          </div>
+          <div class="board-col">
+            <h4>SHIFTS</h4>
+            <div class="board-line"><span>Hi-Vis Day</span><span>6AM</span></div>
+            <div class="board-line"><span>Concrete</span><span>9AM</span></div>
+            <div class="board-line"><span>Bricks</span><span>NOON</span></div>
+            <h4 style="margin-top:7px">NIGHT</h4>
+            <div class="board-line"><span>Studio</span><span>8PM</span></div>
+            <div class="board-line"><span>Mic</span><span>10PM</span></div>
+            <div class="board-line"><span>Party</span><span>2AM</span></div>
+          </div>
+        </div>
+        <div class="board-caption">PICKING TRACKS <span class="em">LIKE I'M DAY TRADING</span> &#128200;</div>
+      </div>
+
+      <div class="closeup">
+        <img src="BrandAssets/malone1.jpg" alt="Malone close up" />
+        <div class="closeup-bubble">"BARS OF... GRIT... HARD HATS... AND BAD LIFE CHOICES." &#128679;</div>
+      </div>
+    </section>
+
+    <!-- ───────── VIBE PANEL + BAG ───────── -->
+    <section class="vibe-row">
+      <div class="vibe">
+        <img src="BrandAssets/malone2.jpg" alt="Malone night mode" />
+        <div class="vibe-overlay"></div>
+        <div class="vibe-cols">
+          <div class="col">
+            <h3>RAPPER</h3>
+            <p>bars<br>flow<br>stories</p>
+          </div>
+          <div class="col">
+            <h3>WORKER</h3>
+            <p>boots<br>tools<br>grind</p>
+          </div>
+          <div class="col">
+            <h3>PARTY<br>BOY</h3>
+            <p>nights<br>chaos<br>fun</p>
+          </div>
+        </div>
+        <div class="whisper">
+          <span class="em">*whispers*</span> "PARTY BOY LIKE I KNOW WHAT IT MEANS" <span class="emoji">&#129323;</span>
+        </div>
+      </div>
+
+      <div class="bag-card card">
+        <div class="bag-caption">LEFT THE STUDIO WITH WAY MORE THAN I PLANNED &#128517;</div>
+        <img src="BrandAssets/malone 9..jpg" alt="Malone leaving the studio" />
+      </div>
+    </section>
+
+    <!-- ───────── CHECKLIST + ID CARD ───────── -->
+    <section class="checklist-block">
+      <div class="checklist-bottom">
+        <ul class="checklist">
+          <li>Melbourne really said "sure but get a hi-vis first"</li>
+          <li>Day job for the mortgage. Night job for the legacy.</li>
+          <li>Bro I just wanted to lay bricks, why am I headlining</li>
+          <li>POV: your rapper has better customer service than your bank</li>
+        </ul>
+
+        <div class="id-card">
+          <svg class="id-arrow" viewBox="0 0 34 30" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 22 C 10 16, 18 10, 30 6" />
+            <path d="M22 4 L 30 6 L 28 14" />
+          </svg>
+          <div class="label">CONSTRUCTION<br><span class="accent">RAP REGISTRY</span></div>
+          <div class="sub">Member ID &middot; Card</div>
+          <div class="stamp">CERTIFIED MALONE</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────── HASHTAG FOOTER ───────── -->
+    <footer class="hashtags">
+      <p>
+        <span>#Malone</span> <span>#BareBones</span> <span>#ConstructionRap</span> <span>#PartyBoy</span> <span>#ComeWithMe</span>
       </p>
-      <div class="hero-bar"></div>
-      <p class="hero-built">BUILT DIFFERENT</p>
-      <div class="hero-cta">
-        <a href="#music" class="btn btn-primary">LISTEN NOW</a>
-        <a href="#about" class="btn btn-outline">WHO IS MALONE</a>
-      </div>
-    </div>
+      <p>
+        <span>#TikTokVlog</span> <span>#MelbourneMusic</span> <span>#BuiltDifferent</span> <span>#POV</span> <span>#BootsAndBars</span>
+      </p>
+    </footer>
 
-    <div class="hero-scroll-indicator">
-      <div class="hero-scroll-line"></div>
-      <span class="hero-scroll-text">Scroll</span>
-    </div>
-  </section>
+    <button class="heart" aria-label="Like this post">&#9825;</button>
+  </main>
 
-  <!-- ──────────────── MARQUEE ──────────────── -->
-  <div class="marquee-strip" aria-hidden="true">
-    <div class="marquee-track">
-      <span class="marquee-item">WORK HARD</span>
-      <span class="marquee-item">STAY REAL</span>
-      <span class="marquee-item">NO OFF SWITCH</span>
-      <span class="marquee-item">OWN YOUR STORY</span>
-      <span class="marquee-item">FROM DIRT TO LIGHTS</span>
-      <span class="marquee-item">NO FILTER</span>
-      <span class="marquee-item">BUILT DIFFERENT</span>
-      <span class="marquee-item">GO HARDER</span>
-      <!-- duplicate for seamless loop -->
-      <span class="marquee-item">WORK HARD</span>
-      <span class="marquee-item">STAY REAL</span>
-      <span class="marquee-item">NO OFF SWITCH</span>
-      <span class="marquee-item">OWN YOUR STORY</span>
-      <span class="marquee-item">FROM DIRT TO LIGHTS</span>
-      <span class="marquee-item">NO FILTER</span>
-      <span class="marquee-item">BUILT DIFFERENT</span>
-      <span class="marquee-item">GO HARDER</span>
-    </div>
-  </div>
-
-  <!-- ──────────────── ABOUT ──────────────── -->
-  <section id="about">
-    <span class="sec-label">// Who Is Malone</span>
-    <h2 class="sec-title">RAPPER. WORKER.<br><span>PARTY BOY.</span></h2>
-
-    <div class="about-grid">
-      <!-- photo -->
-      <div class="about-img-wrap">
-        <div class="about-img-badge">RAW · UNFILTERED</div>
-        <img src="BrandAssets/malone2.jpg" alt="Malone — night mode" loading="lazy" />
-        <div class="about-img-border"></div>
-      </div>
-
-      <!-- text -->
-      <div class="about-text">
-        <p class="about-bio">
-          Malone ain't playing a character — he's living one. By day, boots on and tools out, building shit that lasts. By night, the mic drops and the city knows his name.
-        </p>
-        <p class="about-bio">
-          No filter. No script. No off switch. Born from the dust of construction sites and raised on the energy of late nights, Malone is the collision of grind and release. When the work's done, the party starts. And when the party's done, he's already back at it.
-        </p>
-        <p class="about-bio">
-          Melbourne-raised. Unapologetic. Built different.
-        </p>
-
-        <div class="about-pillars">
-          <div class="pillar">
-            <span class="pillar-icon">🔨</span>
-            <span class="pillar-name">THE GRIND</span>
-            <span class="pillar-desc">Boots on. Tools out. Building real shit every single day.</span>
-          </div>
-          <div class="pillar">
-            <span class="pillar-icon">🎤</span>
-            <span class="pillar-name">THE MIC</span>
-            <span class="pillar-desc">Raw bars. No ghost writers. Every track a true story.</span>
-          </div>
-          <div class="pillar">
-            <span class="pillar-icon">🌙</span>
-            <span class="pillar-name">THE NIGHT</span>
-            <span class="pillar-desc">5 AM finishes. City lights. No off switch. Ever.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ──────────────── MUSIC ──────────────── -->
-  <section id="music">
-    <div class="music-inner">
-      <span class="sec-label">// Debut Album</span>
-      <h2 class="sec-title">BARE <span>BONES</span></h2>
-
-      <div class="music-grid">
-        <!-- album art -->
-        <div class="album-cover">
-          <img src="BrandAssets/malone1.jpg" alt="Bare Bones — Malone" loading="lazy" />
-          <div class="album-cover-tint"></div>
-          <div class="album-cover-corner"></div>
-          <div class="album-cover-bottom">
-            <div class="album-title-text">BARE BONES</div>
-            <div class="album-artist-text">MALONE</div>
-          </div>
-        </div>
-
-        <!-- tracklist -->
-        <div>
-          <div class="tracklist-head">
-            <span class="tracklist-title">TRACKLIST</span>
-            <span class="tracklist-count">6 Tracks</span>
-          </div>
-
-          <div class="track">
-            <div class="track-num-col">
-              <span class="t-num">01</span>
-              <span class="t-play">▶</span>
-            </div>
-            <span class="t-name">JUNGLE FEVER</span>
-            <span class="t-dur">3:24</span>
-          </div>
-
-          <div class="track">
-            <div class="track-num-col">
-              <span class="t-num">02</span>
-              <span class="t-play">▶</span>
-            </div>
-            <span class="t-name">THAT BITCH ROBBED ME</span>
-            <span class="t-dur">2:58</span>
-          </div>
-
-          <div class="track">
-            <div class="track-num-col">
-              <span class="t-num">03</span>
-              <span class="t-play">▶</span>
-            </div>
-            <span class="t-name">GORILLA SLAM</span>
-            <span class="t-dur">3:11</span>
-          </div>
-
-          <div class="track">
-            <div class="track-num-col">
-              <span class="t-num">04</span>
-              <span class="t-play">▶</span>
-            </div>
-            <span class="t-name">BARE BONES MALONE</span>
-            <span class="t-dur">4:02</span>
-          </div>
-
-          <div class="track">
-            <div class="track-num-col">
-              <span class="t-num">05</span>
-              <span class="t-play">▶</span>
-            </div>
-            <span class="t-name">HOW MUCH</span>
-            <span class="t-dur">3:45</span>
-          </div>
-
-          <div class="track">
-            <div class="track-num-col">
-              <span class="t-num">06</span>
-              <span class="t-play">▶</span>
-            </div>
-            <span class="t-name">5 AM IN MELBOURNE</span>
-            <span class="t-dur">4:33</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ──────────────── GALLERY ──────────────── -->
-  <section id="gallery">
-    <span class="sec-label">// The Life</span>
-    <h2 class="sec-title">FROM DIRT <span>TO LIGHTS</span></h2>
-
-    <div class="gallery-grid">
-      <div class="g-item">
-        <img src="BrandAssets/malone8.jpg" alt="Malone — scenic overlook" loading="lazy" />
-        <div class="g-item-overlay"></div>
-      </div>
-      <div class="g-item">
-        <img src="BrandAssets/malone5.jpg" alt="Malone — on the job" loading="lazy" />
-        <div class="g-item-overlay"></div>
-      </div>
-      <div class="g-item">
-        <img src="BrandAssets/malone3.jpg" alt="Malone — raw grin" loading="lazy" />
-        <div class="g-item-overlay"></div>
-      </div>
-      <div class="g-item">
-        <img src="BrandAssets/malone6.jpg" alt="Malone — construction site" loading="lazy" />
-        <div class="g-item-overlay"></div>
-      </div>
-      <div class="g-item">
-        <img src="BrandAssets/malone%209..jpg" alt="Malone — dressed up" loading="lazy" />
-        <div class="g-item-overlay"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ──────────────── FOOTER ──────────────── -->
-  <footer id="contact">
-    <span class="footer-crown">♛</span>
-    <div class="footer-logo">MALONE</div>
-    <p class="footer-tagline">RAPPER · CONSTRUCTION · PARTY BOY</p>
-    <div class="footer-divider"></div>
-    <ul class="footer-socials">
-      <li><a href="#">Instagram</a></li>
-      <li><a href="#">Spotify</a></li>
-      <li><a href="#">Apple Music</a></li>
-      <li><a href="#">YouTube</a></li>
-      <li><a href="#">SoundCloud</a></li>
-    </ul>
-    <p class="footer-copy">© 2026 Malone. All Rights Reserved.</p>
-  </footer>
-
-  <!-- ──────────────── JS ──────────────── -->
   <script>
-    // Nav scroll darkening
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 60);
-    }, { passive: true });
+    document.querySelector('.heart').addEventListener('click', (e) => {
+      const h = e.currentTarget;
+      const isLiked = h.dataset.liked === '1';
+      h.dataset.liked = isLiked ? '0' : '1';
+      h.innerHTML = isLiked ? '&#9825;' : '&#9829;';
+      h.style.color = isLiked ? '' : '#EB4521';
+      h.style.borderColor = isLiked ? '' : '#EB4521';
+    });
   </script>
 
 </body>
